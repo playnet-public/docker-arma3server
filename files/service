@@ -1,0 +1,3 @@
+#!/bin/bash
+
+${ARMA_INST}/./arma3server -name=playnet -config=config/server.cfg -port=2302 -serverMod="${SERVER_MODS}" -mod="${MODS}" -bepath=config

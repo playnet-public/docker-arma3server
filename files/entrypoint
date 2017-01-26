@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+set -o errtrace
+
+ulimit -n 8192
+
+server_name=${SERVER_NAME:-'PlayNet ArmA 3 Server Docker Instance'}
+server_pw=${SERVER_PASSWORD:-''}
+server_admin_pw=${SERVER_ADMIN_PASSWORD:-'admin'}
+slots=${SLOTS:-'10'}
+server_verify_sig=${VERIFY_SIGNATURES:-'2'}
+server_persistent=${SERVER_PERSISTENT:-'1'}
+mission_name=${MISSION_NAME:-''}
+mission_difficulty=${MISSION_DIFFICULTY:-'regular'}
+
+
+sed_script=""
+for var in server_name server_name server_pw server_admin_pw slots server_verify_sig server_persistent mission_name mission_difficulty; do
+    sed_script+="s~{{$var}}~${!var}~g;"
+done
+
+echo "create server.cfg"
+cat ${ARMA_INST}/config/server.cfg.template | sed -e "$sed_script" > ${ARMA_INST}/config/server.cfg
+
+echo "starting arma3server $@"
+
+exec "$@"
