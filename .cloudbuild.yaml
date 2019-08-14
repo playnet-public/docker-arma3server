@@ -2,9 +2,9 @@ steps:
   - name: "gcr.io/cloud-builders/docker"
     args: [
       "build", 
-      "--build-arg", "USERNAME=${STEAM_USERNAME}",
-      "--build-arg", "PASSWORD=${STEAM_PASSWORD}",
-      "-t", "eu.gcr.io/playnet-gce/arma3server:$(VERSION)",
+      "--build-arg", "USERNAME=$(STEAM_USERNAME)",
+      "--build-arg", "PASSWORD=$(STEAM_PASSWORD)",
+      "-t", "eu.gcr.io/playnet-gce/arma3server:latest",
       "."
     ]
     secretEnv:
