@@ -49,7 +49,7 @@ RUN set -x \
 RUN set -x \
   && /opt/steamcmd.sh +login ${USERNAME} ${PASSWORD} +force_install_dir ${ARMA_INST}  +app_update ${APPID} +quit; exit 0
 
-RUN ln -s ${ARMA_INST}/mpmissions ${ARMA_INST}/MPMissions
+# RUN ln -s ${ARMA_INST}/mpmissions ${ARMA_INST}/MPMissions
 
 ADD files/service /usr/local/bin/service
 ADD files/entrypoint /usr/local/bin/entrypoint
