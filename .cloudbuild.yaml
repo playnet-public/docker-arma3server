@@ -1,0 +1,19 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    args: [
+      "build", 
+      "--build-arg", "USERNAME=${STEAM_USERNAME}",
+      "--build-arg", "PASSWORD=${STEAM_PASSWORD}",
+      "-t", "eu.gcr.io/playnet-gce/arma3server:$(VERSION)",
+      "."
+    ]
+    secretEnv:
+      - STEAM_USERNAME
+      - STEAM_PASSWORD
+secrets:
+  - kmsKeyName: projects/playnet-gce/locations/global/keyRings/steam/cryptoKeys/steam
+    secretEnv:
+      STEAM_USERNAME: CiQAYz8VKiaSK/noHj2HepTko8TzGIIpRZuus9GBZoU65mWjcHsSMwAH4rorJShugOO97m2haSXKg9GGs3x/vplr9KK8M/tdFXHcoWCkCemWXmee6m1jx0c+iA==
+      STEAM_PASSWORD: CiQAYz8VKrrD++Ck0kywR19uoPevtx4bZ79fF+q5wq0BDqOKhrUSPQAH4rorYQg4n7zV04G/6DbhcEHJX0ojcyBviEmMpPOdNV+Xe23OH/YgC5ijo29v6h74k86D96/PV9+E2LU=
+images:
+  - eu.gcr.io/playnet-gce/arma3server
