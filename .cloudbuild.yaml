@@ -7,9 +7,11 @@ steps:
       "-t", "eu.gcr.io/playnet-gce/arma3server:latest",
       "."
     ]
+    timeout: 3600s
     secretEnv:
       - STEAM_USERNAME
       - STEAM_PASSWORD
+timeout: 3600s
 secrets:
   - kmsKeyName: projects/playnet-gce/locations/global/keyRings/steam/cryptoKeys/steam
     secretEnv:
