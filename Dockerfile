@@ -8,8 +8,8 @@ FROM ubuntu:18.04
 LABEL maintainer "play-net.org  <docker@play-net.org>"
 LABEL author "Finch"
 
-ARG USERNAME
-ARG PASSWORD
+ARG STEAM_USERNAME
+ARG STEAM_PASSWORD
 
 ENV ARMA_INST /opt/arma
 ENV STEAM_INST /opt/steam
@@ -47,7 +47,7 @@ RUN set -x \
   && ${STEAM_INST}/steamcmd +quit; exit 0
 
 RUN set -x \
-  && /opt/steamcmd.sh +login ${USERNAME} ${PASSWORD} +force_install_dir ${ARMA_INST}  +app_update ${APPID} +quit; exit 0
+  && /opt/steamcmd.sh +login ${STEAM_USERNAME} ${STEAM_PASSWORD} +force_install_dir ${ARMA_INST}  +app_update ${APPID} +quit; exit 0
 
 # RUN ln -s ${ARMA_INST}/mpmissions ${ARMA_INST}/MPMissions
 
