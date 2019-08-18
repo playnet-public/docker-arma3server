@@ -7,7 +7,7 @@ set -o errtrace
 
 ulimit -n 8192
 
-server_name=${SERVER_NAME:-'PlayNet ArmA 3 Server Docker Instance'}
+server_name=${SERVER_NAME:-'PlayNet ArmA 3 Docker Instance'}
 server_pw=${SERVER_PASSWORD:-''}
 server_admin_pw=${SERVER_ADMIN_PASSWORD:-'admin'}
 slots=${SLOTS:-'10'}

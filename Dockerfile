@@ -24,7 +24,7 @@ RUN set -x \
   && rm -rf /var/cache/apk/*
 
 RUN set -x \
-  && mkdir -p ${ARMA_INST}\config \
+  && mkdir -p ${ARMA_INST}/config \
   && mkdir -p ${STEAM_INST}
 
 RUN set -x \
@@ -47,7 +47,7 @@ RUN set -x \
   && ${STEAM_INST}/steamcmd +quit; exit 0
 
 RUN set -x \
-  && /opt/steamcmd.sh +login ${STEAM_USERNAME} ${STEAM_PASSWORD} +force_install_dir ${ARMA_INST}  +app_update ${APPID} +quit; exit 0
+  && /opt/steamcmd.sh +login ${STEAM_USERNAME} ${STEAM_PASSWORD} +force_install_dir ${ARMA_INST} +app_update ${APPID} +quit; exit 0
 
 # RUN ln -s ${ARMA_INST}/mpmissions ${ARMA_INST}/MPMissions
 
@@ -56,7 +56,10 @@ ADD files/entrypoint /usr/local/bin/entrypoint
 
 RUN set -x \
   && chown -R ${SYSTEM_USER}:${SYSTEM_GROUP} /usr/local/bin/service \
-  && chown -R ${SYSTEM_USER}:${SYSTEM_GROUP} /usr/local/bin/entrypoint
+  && chown -R ${SYSTEM_USER}:${SYSTEM_GROUP} /usr/local/bin/entrypoint \
+  && chown -R ${SYSTEM_USER}:${SYSTEM_GROUP} /opt/arma \
+  && chmod +x /usr/local/bin/service \
+  && chmod +x /usr/local/bin/entrypoint
 
 EXPOSE 2302 2303 2304
 

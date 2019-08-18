@@ -4,7 +4,7 @@ STEAM_USERNAME ?= ''
 STEAM_PASSWORD ?= ''
 
 build:
-	docker build --build-arg USERNAME=$(STEAM_USERNAME) --build-arg PASSWORD=$(STEAM_PASSWORD) -t $(REGISTRY)/playnet-gce/arma3server:$(VERSION) .
+	docker build --build-arg STEAM_USERNAME=$(STEAM_USERNAME) --build-arg STEAM_PASSWORD=$(STEAM_PASSWORD) -t $(REGISTRY)/playnet-gce/arma3server:$(VERSION) .
 
 clean:
 	docker rmi $(REGISTRY)/playnet-gce/arma3server:$(VERSION)
